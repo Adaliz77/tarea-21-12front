@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg colore">
+  <div class="container-fluid">
+    <a style="color: #252525;" class="navbar-brand" routerLink="/login">{{nombreapp}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" routerLink="/home">
+          <a style="color: #252525;" class="nav-link active" aria-current="page" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item " routerLinkActive="active">
+          <a style="color: #252525;" class="nav-link" routerLink="/clientes">Clientes</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a style="color: #252525;" class="nav-link" routerLink="/productos">Tienda</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <li *ngIf="!authService.token"><a style="color: #252525; background: white; border: white;" [routerLink]="['/login']" class="btn btn-outline-primary">Sign In</a></li>
+
+        <li *ngIf="authService.token" class="dropdown">
+          <a style="color: #252525; background: white; border: white;" class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{authService.usuario.username}}
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+             <button (click)="logout()" class="dropdown-item" type="submit">Sign Out</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

@@ -1,0 +1,61 @@
+<div style="border: white;" class="card border-primary mb-3">
+  <div class="card-header">
+    Productos
+  </div>
+  <div class="card-body text-primary">
+    <h5 style="color: black;">Listado de Productos</h5>
+
+    <div class="my-2 text-left">
+      <button *ngIf="authService.token"
+        class="btn btn-rounded btn-primary" style="background: teal; border: teal;"
+        type="button"
+        [routerLink]="['/productos/crear']"
+        >
+          Nuevo Producto
+      </button>
+    </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Precio</th>
+      <th *ngIf="authService.token" scope="col" >Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of productos">
+      <th scope="row">
+       <!-- <button
+        type="button"
+        class="btn btn-success btn-sm"
+        [routerLink]="['/clientes/ver', item.id]">
+        {{item.id}}
+        </button>-->
+        <a [routerLink]="['/productos/ver', item.id]">
+
+          <img *ngIf="item.imagen"
+          src="http://localhost:8080/api/uploads/img/{{item.imagen}}" alt="{{item.imagen}}" class="img-thumbnail rounded"
+          style="width: 64px; cursor: pointer;">
+
+          <img *ngIf="!item?.imagen"
+          src="{{imagenSrc}}" alt="Sin foto" class="img-thumbnail rounded"
+          style="width: 64px; cursor: pointer;">
+        </a>
+      </th>
+      <td>{{item.nombre}}</td>
+      <td>{{item.descripcion}}</td>
+      <td>{{item.precio}}</td>
+      <td *ngIf="authService.token">
+        <button style="background: teal; border: teal;" class="btn btn-primary m-md-4" [routerLink]="['/productos/editar', item.id]">Editar</button>
+        <button  class="btn btn-danger" (click)="delete(item)" >Eliminar</button>
+      </td>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+
